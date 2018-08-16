@@ -35,10 +35,10 @@
           targets←target_csv
           net←inputs SGD targets
         ∇
-        image_csv←↓⎕CSV './mnist_train_images.csv' '' 3
-        target_csv←{⍵=-1-⍳10}¨∊⎕CSV './mnist_train_labels.csv' '' 3
-        image_test_csv←↓⎕CSV './mnist_test_images.csv' '' 3
-        target_test_csv←∊⎕CSV './mnist_test_labels.csv' '' 3
+        image_csv←↓⎕CSV '/home/joe/network/mnist_train_images.csv' '' 3
+        target_csv←{⍵=-1-⍳10}¨∊⎕CSV '/home/joe/network/mnist_train_labels.csv' '' 3
+        image_test_csv←↓⎕CSV '/home/joe/network/mnist_test_images.csv' '' 3
+        target_test_csv←∊⎕CSV '/home/joe/network/mnist_test_labels.csv' '' 3
         feedforward←{⊃{Sigmoid+⌿(⍵,1)×[1]⍺}/⌽(⊂⍺), (⊆⍵)}
         classify←{{-1-⍵⍳⌈/⍵}⍺ feedforward ⍵}
         test←{+/∊target_test_csv = image_test_csv classify¨ ⊂⍵}
