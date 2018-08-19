@@ -1,5 +1,5 @@
 * A neural network in APL
 this network has 30 hidden nodes it uses the data from [[https:%20https://github.com/jslip/network.git][the MNIST
 database]] to train to recognise handwritten digits. This project was
-inspired by the Dyalog APL 2018 contest. This classifies digits with
->95% accuracy.
+inspired by the Dyalog APL 2018 contest. with 30 hidden nodes this classifies digits with
+>95% accuracy in ~30 seconds
