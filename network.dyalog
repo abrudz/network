@@ -39,6 +39,7 @@
         trainLabels←{⍵=⊂-1-⍳10}⎕NREAD ('/home/joe/network/train-labels-idx1-ubyte' ⎕NTIE 0) 83 ¯1 8
         testImages←10000 784⍴255÷⍨255|⎕NREAD ('/home/joe/network/t10k-images-idx3-ubyte' ⎕NTIE 0) 83 ¯1 16
         testLabels←⎕NREAD ('/home/joe/network/t10k-labels-idx1-ubyte' ⎕NTIE 0) 83 ¯1 8
+        ⎕NUNTIE - 1 2 3 4
         feedforward←{⊃{Sigmoid (⍵,1)+.×⍺}/⌽(⊂⍺), ⊆⍵}
         classify←{{-1-⍵⍳⌈/⍵}⍤1⊢⍺ feedforward ⍵}
         test←{+/∊testLabels = (testImages) classify ⍵}
