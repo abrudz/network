@@ -31,15 +31,15 @@
           }⍣epochs⊣network
         ∇
         ∇ net←Run
-          inputs←image_csv
-          targets←target_csv
+          inputs←trainImages
+          targets←trainLabels
           net←inputs SGD targets
         ∇
-        image_csv←↓⎕CSV '/home/joe/network/mnist_train_images.csv' '' 3
-        target_csv←{⍵=-1-⍳10}¨∊⎕CSV '/home/joe/network/mnist_train_labels.csv' '' 3
-        image_test_csv←↓⎕CSV '/home/joe/network/mnist_test_images.csv' '' 3
-        target_test_csv←∊⎕CSV '/home/joe/network/mnist_test_labels.csv' '' 3
+        trainImages←↓60000 784⍴255÷⍨255|⎕NREAD ('/home/joe/network/train-images-idx3-ubyte' ⎕NTIE 0) 83 ¯1 16
+        trainLabels←{⍵=⊂-1-⍳10}⎕NREAD ('/home/joe/network/train-labels-idx1-ubyte' ⎕NTIE 0) 83 ¯1 8
+        testImages←10000 784⍴255÷⍨255|⎕NREAD ('/home/joe/network/t10k-images-idx3-ubyte' ⎕NTIE 0) 83 ¯1 16
+        testLabels←⎕NREAD ('/home/joe/network/t10k-labels-idx1-ubyte' ⎕NTIE 0) 83 ¯1 8
         feedforward←{⊃{Sigmoid (⍵,1)+.×⍺}/⌽(⊂⍺), ⊆⍵}
         classify←{{-1-⍵⍳⌈/⍵}⍤1⊢⍺ feedforward ⍵}
-        test←{+/∊target_test_csv = (↑image_test_csv) classify ⍵}
+        test←{+/∊testLabels = (testImages) classify ⍵}
 :EndNamespace
