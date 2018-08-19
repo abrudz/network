@@ -7,7 +7,7 @@
           e←target-⊃res
           res←(⊂e) ((⊣×S)@1) res
           res←⌽(⌽network,⊂⍬){⍺{⍵⍺}¨⍵}res
-          ∆weights←¯1↓1↓⊃{∆o←⊃⍵ ⋄l w←⍺ ⋄ ∆w←(⍉l,1)+.×∆o ⋄ ((¯1↓⍤1⊢(S (l,1))×∆o+.×⍉w) ∆w),1↓⍵}/res
+          ∆weights←¯1↓1↓⊃{∆o←⊃⍵ ⋄l w←⍺ ⋄ ∆w←(⍉l,1)+.×∆o ⋄ ((0 ¯1↓⊢(S (l,1))×∆o+.×⍉w) ∆w),1↓⍵}/res
           weights←network+eta×∆weights÷batch_size
         ∇
         Sigmoid←{÷1+*-⍵}
